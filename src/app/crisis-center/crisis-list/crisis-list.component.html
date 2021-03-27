@@ -1,0 +1,15 @@
+<h2>Crisises</h2>
+<ul class="crisises">
+  <li *ngFor="let crisis of crisises$ | async"
+    [class.selected]="crisis.id === selectedId"
+    (click)="onSelect(crisis)">
+    
+    <a [routerLink]="['/crisis', crisis.id]"><span class="badge">{{crisis.id}}</span> {{crisis.name}}</a>
+  </li>
+</ul>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->

@@ -1,0 +1,19 @@
+<h2>CRISISES</h2>
+<div *ngIf="crisis$ | async as crisis">
+  <h3>"{{ crisis.name }}"</h3>
+  <div>
+    <label>Id: </label>{{ crisis.id }}</div>
+  <div>
+    <label>Name: </label>
+    <input [(ngModel)]="crisis.name" placeholder="name"/>
+  </div>
+  <p>
+    <button (click)="gotoCrisises(crisis)">Back</button>
+  </p>
+</div>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
