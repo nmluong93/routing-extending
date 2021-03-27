@@ -10,12 +10,16 @@ import { HeroesModule } from './heroes/heroes.module';
 
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
 import { CrisisCenterModule } from './crisis-center/crisis-center.module';
+import { AdminModule } from './admin/admin.module';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     ComposeMessageComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +27,8 @@ import { CrisisCenterModule } from './crisis-center/crisis-center.module';
     HeroesModule,
     CrisisCenterModule,
     BrowserAnimationsModule,
+    AdminModule,
+    AuthModule,
     AppRoutingModule,
   ],
   providers: [],
