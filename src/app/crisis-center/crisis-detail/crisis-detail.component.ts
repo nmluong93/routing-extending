@@ -39,10 +39,8 @@ export class CrisisDetailComponent implements OnInit {
 
   gotoCrisises(crisis: Crisis) {
     const crisisId = crisis ? crisis.id : null;
-    // Pass along the crisis id if available
-    // so that the crisisList component can select that crisis.
-    // Include a junk 'foo' property for fun.
-    this.router.navigate(['/crisises', { id: crisisId, foo: 'foo' }]);
+    // Relative navigation back to the crises
+    this.router.navigate(['../', { id: crisisId, foo: 'foo' }], { relativeTo: this.route });
   }
 }
 
