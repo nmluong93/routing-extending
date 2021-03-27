@@ -29,11 +29,11 @@
     color: white;
   }
   .heroes li.selected:hover {
-    background-color: #505050;
+    background-color: aqua;
     color: white;
   }
   .heroes li.selected:active {
-    background-color: black;
+    background-color: adjust-hue($color: #000000, $degrees: 0);
     color: white;
   }
   .heroes .badge {

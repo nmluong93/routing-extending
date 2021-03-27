@@ -12,23 +12,28 @@ import { Hero } from '../hero';
   styleUrls: ['./hero-detail.component.scss']
 })
 export class HeroDetailComponent implements OnInit {
-  // to not be complained as null possiblility.
-  hero$?: Observable<Hero>;
-  selectedId? : number;
+
+  hero$!: Observable<Hero | undefined>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: HeroService
-  ) {}
-// https://stackoverflow.com/questions/48356320/unable-to-parse-optional-routing-parameters-in-angular
+  ) { }
 
   ngOnInit() {
+    // This will not reuse the hero-detail component each time the url change to other id.
+    // const id = this.route.snapshot.paramMap.get('id')!;
+    // this.hero$ = this.service.getHero(id);
+
+
+    /**
+     * Use the observable paramMap approach if there's a possibility that the router could re-use the component. 
+     * This tutorial sample app uses with the observable paramMap.
+     */
     this.hero$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {
-        this.selectedId = params.get('id') != null ? +params.get('id') : 1;
-       return  this.service.getHero(this.selectedId)
-      })
+      switchMap((params: ParamMap) => this.service.getHero(params.get('id')!)
+      )
     );
   }
 
