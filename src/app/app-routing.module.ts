@@ -6,7 +6,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 const routes: Routes = [
   { path: '', redirectTo: '/heroes', pathMatch: 'full' },
-  { path: 'compose', component: ComposeMessageComponent, outlet: 'popup' },
+  { path: 'compose', component: ComposeMessageComponent, outlet: 'popup' /**This is for defining route for secondary - named outlet. */},
   { path: '**', component: PageNotFoundComponent }
 ];
 
