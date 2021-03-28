@@ -7,6 +7,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/heroes', pathMatch: 'full' },
   /**This is for defining route for secondary - named outlet e.g in this case : name = popup. */
   { path: 'compose', component: ComposeMessageComponent, outlet: 'popup' },
+  {
+    // for lazily load admin module.
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 
