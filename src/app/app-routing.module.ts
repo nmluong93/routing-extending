@@ -6,7 +6,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/heroes', pathMatch: 'full' },
+  { path: '', 
+    // redirectTo: '/heroes',
+    redirectTo : '/superheroes',
+    pathMatch: 'full' 
+  },
   /**This is for defining route for secondary - named outlet e.g in this case : name = popup. */
   { path: 'compose', component: ComposeMessageComponent, outlet: 'popup' },
   {

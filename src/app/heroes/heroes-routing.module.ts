@@ -4,8 +4,11 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 
 const routes: Routes = [
-  { path: 'heroes',  component: HeroListComponent, data :{Animation : 'heroes'} },
-  { path: 'hero/:id', component: HeroDetailComponent , data : {Animation: 'hero'}}
+  // migrate heroes links to superheroes
+  { path: 'heroes', redirectTo: '/superheroes' },
+  { path: 'hero/:id', redirectTo: '/superhero/:id' },
+  { path: 'superheroes',  component: HeroListComponent, data :{Animation : 'heroes'} },
+  { path: 'superhero/:id', component: HeroDetailComponent , data : {Animation: 'hero'}}
 ];
 
 @NgModule({
