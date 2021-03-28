@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree, CanActivateChild, NavigationExtras } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree, CanActivateChild, NavigationExtras, CanLoad, Route, UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthService } from './auth.service';
@@ -7,8 +7,10 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate, CanActivateChild {
+
+export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(private authService: AuthService, private router: Router) { }
+ 
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -40,5 +42,14 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     // Redirect to the login page
     // return this.router.parseUrl('/login');
     return this.router.createUrlTree(['/login', navigationExtras]);
+  }
+
+  /**
+   * The CanLoad interface support for loading the Admin module only if the user logged in successfully.
+   * The router sets the canLoad() method's route parameter to the intended destination URL. The checkLogin() method redirects to that URL once the user has logged in.
+   */
+  canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    const url = `/$route.path`;
+    return this.checkLogin(url);
   }
 }
